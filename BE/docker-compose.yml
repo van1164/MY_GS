@@ -34,4 +34,4 @@ services:
 networks:
   main-network:
     external:
-      name: host
+      name: test
