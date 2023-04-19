@@ -30,8 +30,3 @@ services:
 
     networks:
       - main-network
-
-networks:
-  main-network:
-    external:
-      name: test
