@@ -28,8 +28,10 @@ class QRCodeScan(private val act: MainActivity) {
             //QRCode Scan 성공
             if(intentResult.contents != null){
                 //QRCode Scan result 있는경우
-                Toast.makeText(act, "인식된 QR-data: ${intentResult.contents}", Toast.LENGTH_SHORT).show()
                 barcode = intentResult.contents
+                println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+                println(barcode)
+                println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
             }else{
                 //QRCode Scan result 없는경우
                 Toast.makeText(act, "인식된 QR-data가 없습니다.", Toast.LENGTH_SHORT).show()
