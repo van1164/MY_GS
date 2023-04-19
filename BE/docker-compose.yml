@@ -18,6 +18,9 @@ services:
     networks:
       - main-network
     restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
     ports:
       - 27017:27017
     command: [ "--bind_ip", "0.0.0.0" ]
