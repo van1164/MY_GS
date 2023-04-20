@@ -63,5 +63,17 @@
                 android:text="위치"
                 android:textSize="34sp" />
         </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/Add_barcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="추가하기" />
+        </TableRow>
     </TableLayout>
+
 </LinearLayout>
