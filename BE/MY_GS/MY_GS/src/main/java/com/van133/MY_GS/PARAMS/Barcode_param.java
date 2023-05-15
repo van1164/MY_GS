@@ -6,13 +6,21 @@ import lombok.AllArgsConstructor;
 
 public class Barcode_param {
     String BAR_CD;
-
-    public Barcode_param(String BAR_CD, String PRDLST_NM) {
+    String PRDLST_NM;
+    String location;
+    public Barcode_param(String BAR_CD, String PRDLST_NM, String location) {
         this.BAR_CD = BAR_CD;
         this.PRDLST_NM = PRDLST_NM;
+        this.location =location;
     }
 
-    String PRDLST_NM;
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public String getBAR_CD() {
         return BAR_CD;
