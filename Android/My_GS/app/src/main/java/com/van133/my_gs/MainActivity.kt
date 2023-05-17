@@ -31,6 +31,7 @@ class MainActivity : ComponentActivity() {
         setContentView(R.layout.main_layout)
         var body: ResultBarcode?
         val btn_event = findViewById<Button>(R.id.Camera)
+        val add_bar = findViewById<Button>(R.id.Add_barcode)
         val barcode = findViewById<TextView>(R.id.barcode)
         val name = findViewById<TextView>(R.id.name)
         val Where = findViewById<TextView>(R.id.Where)
@@ -47,7 +48,7 @@ class MainActivity : ComponentActivity() {
             temp = qrCodeScan.getBar()
             println()
             val api = retrofit.create(Search_Barcode::class.java)
-            val callSearch_Barcode = api.getSearchBarcode(temp)
+            val callSearch_Barcode = api.getSearchBarcode(temp,"1")
             callSearch_Barcode.enqueue(object : Callback<ResultBarcode> {
                 override fun onResponse(
                     call: Call<ResultBarcode>,
@@ -65,13 +66,15 @@ class MainActivity : ComponentActivity() {
                 }
             })
 
-
-
-
-
-
             println("==========================================")
         }
+        add_bar.setOnClickListener{
+            qrCodeScan.startQRScan()
+            println("==========================================")
+            temp = qrCodeScan.getBar()
+            setContentView(R.layout.input)
+            //val api = retrofit.create(Search_Barcode::class.java)
 
+        }
     }
 }
