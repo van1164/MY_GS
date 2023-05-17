@@ -1,18 +1,36 @@
-version: '1.0'
+version: "3.8"
 services:
-  web:
-    image: van133/mygs:latest
-    ports:
-      - "80:8080"
-    volumes:
-      - .:/code
-    links:
-      - db
-  db:
-    image: mongo:latest
+  mongo:
+    image: van133/mymongo
     container_name: mongo
-    restart: always
-    volumes:
-      - ./data:/data
+    hostname: mongo
+    restart: unless-stopped
     ports:
-      - "27017:27017"
+      - 27017:27017
+    networks:
+      - main-network
+    command: ["--bind_ip", "0.0.0.0"]
+
+  web:
+    image: van133/my_gs
+    container_name: backend
+    restart: on-failure
+    depends_on:
+      - mongo
+    ports:
+      - 80:8000
+    environment:
+      - SERVER_PORT=8000
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_APPLICATION_NAME=APP_NAME
+      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
+      - SPRING_DATA_MONGODB_AUTO_INDEX_CREATION=$MONGO_AUTO_INDEX_CREATION
+      - SPRING_DATA_MONGODB_HOST=mongo
+      - SPRING_DATA_MONGODB_PORT=27017
+
+    networks:
+      - main-network
+
+networks:
+  main-network:
+    driver: bridge

@@ -6,8 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Getter
-@Setter
+
 @AllArgsConstructor
 @Document(collection = "Location")
 public class LOCATION {
@@ -15,4 +14,27 @@ public class LOCATION {
     String BAR_CD;
     String location;
 
+    public String getCid() {
+        return Cid;
+    }
+
+    public void setCid(String cid) {
+        Cid = cid;
+    }
+
+    public String getBAR_CD() {
+        return BAR_CD;
+    }
+
+    public void setBAR_CD(String BAR_CD) {
+        this.BAR_CD = BAR_CD;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }

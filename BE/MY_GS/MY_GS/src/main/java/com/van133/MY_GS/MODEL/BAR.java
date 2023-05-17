@@ -6,11 +6,15 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@AllArgsConstructor
 @Document(collection = "Barcode")
 public class BAR {
     String BAR_CD;
     String PRDLST_NM;
+
+    public BAR(String BAR_CD, String PRDLST_NM) {
+        this.BAR_CD = BAR_CD;
+        this.PRDLST_NM = PRDLST_NM;
+    }
 
     public String getBAR_CD() {
         return BAR_CD;
