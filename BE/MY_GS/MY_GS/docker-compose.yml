@@ -12,7 +12,7 @@ services:
     command: ["--bind_ip", "0.0.0.0"]
 
   web:
-    image: van133/my_gs
+    image: van133/my_gs:latest
     container_name: backend
     restart: on-failure
     depends_on:
