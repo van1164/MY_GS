@@ -1,6 +1,7 @@
 package com.van133.my_gs
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -27,7 +28,7 @@ class MainActivity : ComponentActivity() {
         var temp : String
         var qrCodeScan = QRCodeScan(this)
         var retrofit = Retrofit.Builder()
-            .baseUrl("http://172.30.48.1:8080")//"http://ec2-18-223-106-78.us-east-2.compute.amazonaws.com")
+            .baseUrl("http://ec2-18-223-106-78.us-east-2.compute.amazonaws.com")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -66,7 +67,6 @@ class MainActivity : ComponentActivity() {
             val SaveEvent = findViewById<Button>(R.id.save_button)
             SaveEvent.setOnClickListener {
                 val api = retrofit.create(Search_Barcode::class.java)
-                setContentView(R.layout.main_layout)
                 val callAddBarcode= api.getAddBarcode(temp,name.toString())
                 callAddBarcode.enqueue(object : Callback<ResultBarcode> {
                     override fun onResponse(
@@ -81,7 +81,10 @@ class MainActivity : ComponentActivity() {
                         println("결과:"+ "실패 : $t")
                     }
                 })
+                val nextIntent = Intent(this,MainActivity::class.java)
+                startActivity(nextIntent)
             }
+
             //val api = retrofit.create(Search_Barcode::class.java)
 
         }
